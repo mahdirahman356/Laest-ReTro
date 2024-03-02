@@ -49,7 +49,7 @@ let allPosts = (allData) => {
                         </div>
     
                          <div>
-                            <button onclick="postBtn()">
+                            <button onclick="postBtn('${postSetup.title}','${postSetup.view_count}')">
                                 <img src="btn-img.png" alt="">
                             </button>
                          </div>
@@ -75,7 +75,15 @@ let allPosts = (allData) => {
     });
 }
 
-let postBtn = () => {
-    
+let postBtn = (title,view) => {
+    let titlesContainer = document.getElementById('titles')
+    let showTitles = document.createElement('div')
+    showTitles.innerHTML = `
+    <div  class="flex bg-white p-3 rounded-2xl gap-6">
+    <p class="font-semibold">${title}</p>
+    <p class="flex gap-2 items-center text-[#12132D99]"> <img src="tabler-icon-eye.png" alt=""> ${view}</p>
+   </div> 
+    `
+    titlesContainer.appendChild(showTitles)
 }
 posts()
