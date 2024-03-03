@@ -1,6 +1,6 @@
 
-let posts = async() => {
-    let res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts?category=Comedy')
+let posts = async(categoryName) => {
+    let res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     let data = await res.json()
     let allData = data.posts
     allPosts(allData)
@@ -8,23 +8,26 @@ let posts = async() => {
 
 let allPosts = (allData) => {
     allData.forEach(postSetup => {
-        console.log(postSetup)
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
         createPosts.innerHTML = `
         <div>
-        <div class="flex bg-[#F3F3F5] p-2 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
+        <div class="flex flex-col md:flex-row bg-[#F3F3F5] p-5 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
                   <div>
                     <div class="flex items-start">
-                   <div class="bg-slate-400 p-4 rounded-[10px]">
+                   <div class="bg-slate-400 p-4 rounded-[10px] hidden">
                     <img src="Frame profail.png" alt="">
                    </div>
-                   <div>
-                   <img id="active" class=" -translate-x-2 -translate-y-1" src="Status-red.png" alt="">
-                   </div>
+                   
+                   <div class="indicator">
+                   <span id="status" class="indicator-item badge badge-secondary  bg-red-500 border-white"></span>
+                   <div class="grid p-8 bg-base-300 place-items-center"></div>
+                 </div>
 
-                   <div id="unactive" class="hidden">
-                    <img class=" -translate-x-2 -translate-y-1" src="Status.png" alt="">
+                   
+
+                   <div id="active" class="hidden">
+                    <img  class="-translate-x-2 -translate-y-1" src="Status.png" alt="">
                    </div>
                 </div>
                 </div>
@@ -60,18 +63,15 @@ let allPosts = (allData) => {
         </div>
         `
         postContainer.appendChild(createPosts)
-
        let unactive = document.getElementById('unactive')
-       let active = document.getElementById('active')
-       if(postSetup.isActive){
-        unactive.classList.remove('hidden')
-        active.classList.add('hidden')
-       }
-       else{
-        unactive.classList.add('hidden')
-        active.classList.remove('hidden')
-       }
+       let status = document.getElementById('status')
 
+       if(postSetup.isActive){
+            status.classList.remove('bg-red-500')
+            status.classList.add('bg-green-500')
+       }
+    
+     
     });
 }
 
@@ -85,5 +85,60 @@ let postBtn = (title,view) => {
    </div> 
     `
     titlesContainer.appendChild(showTitles)
+    count()
 }
-posts()
+
+let counting = 1
+let count = () => {
+    let countNum = document.getElementById('count')
+    let countInner = countNum.innerText
+    let countConvertNum = parseInt(countInner)
+    let countNumber = countConvertNum + counting
+    countNum.innerText = countNumber
+    
+}
+
+let searchBtn = () => {
+    let searchInput = document.getElementById('search-input')
+    let categoryName = searchInput.value
+    posts(categoryName)
+    let postContainer = document.getElementById('post-container')
+    postContainer.innerHTML = ''
+
+}
+posts('comedy')
+
+let latestPosts = async() => {
+    let res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts')
+    let data =await res.json()
+    allLatestCart(data)
+}  
+let  allLatestCart = (data) => {
+    data.forEach(latestPostsSetup => {
+        console.log(latestPostsSetup)
+        let latestCard = document.getElementById('latest-card')
+        let createlatestCard = document.createElement('div')
+        createlatestCard.innerHTML = `
+        <div class="card card-compact w-96 bg-base-100 shadow-xl">
+            <figure><img src=${latestPostsSetup.cover_image} alt="Shoes" /></figure>
+            <div class="card-body space-y-3">
+            <h1 class="text-[16px] text-[#12132D99]"><i class="fa-solid fa-calendar-days mr-2"></i> ${latestPostsSetup.author?.posted_date?`${latestPostsSetup.author?.posted_date}`:"No publish date"}</h1>
+              <h2 class="font-bold leading-6 text-[20px]">${latestPostsSetup.title}</h2>
+              <p class="text-[16px] text-[#12132D99]">${latestPostsSetup.
+                description}</p>
+              <div class=" flex gap-3">
+                <div>
+                <img class="rounded-full w-[50px]" src=${latestPostsSetup.profile_image} alt="">
+                </div>
+                <div>
+                  <p class="text-[16px] font-bold">${latestPostsSetup.author.name}</p>
+                  <p class="text-[#12132D99]">${latestPostsSetup.author.designation?`${latestPostsSetup.author.designation}`:"Unknown"}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+        latestCard.appendChild(createlatestCard)
+    });
+  }
+latestPosts()

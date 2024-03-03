@@ -6,6 +6,7 @@
     <title>ReTro</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header class="md:w-[85%] mx-auto my-14">
@@ -27,10 +28,34 @@
             </div>
             <div class="navbar-center hidden lg:flex">
               <ul class="menu menu-horizontal px-1">
-                <li><a><img src="Frame 1.png" alt=""></a></li>
-                <li><a><img src="Frame 2.png" alt=""></a></li>
-                <li><a><img src="Frame 3.png" alt=""></a></li>
-                <li><a><img src="Frame 4.png" alt=""></a></li>
+
+                <div class="dropdown dropdown-hover dropdown-top">
+                  <div tabindex="0" role="button" class=" m-1"><li><a><img src="Frame 1.png" alt=""></a></li></div>
+                  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-black text-gray-400 rounded-md">
+                    <li><a>Home</a></li>
+                  </ul>
+                </div>
+
+                <div class="dropdown dropdown-hover dropdown-top">
+                  <div tabindex="0" role="button" class=" m-1"><li><a><img src="Frame 2.png" alt=""></a></li></div>
+                  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-black text-gray-400 rounded-md">
+                    <li><a>Edit</a></li>
+                  </ul>
+                </div>
+
+                <div class="dropdown dropdown-hover dropdown-top">
+                  <div tabindex="0" role="button" class=" m-1"><li><a><img src="Frame 3.png" alt=""></a></li></div>
+                  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-black text-gray-400 rounded-md">
+                    <li><a>Add</a></li>
+                  </ul>
+                </div>
+
+                <div class="dropdown dropdown-hover dropdown-top">
+                  <div tabindex="0" role="button" class=" m-1"><li><a><img src="Frame 4.png" alt=""></a></li></div>
+                  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-black text-gray-400 rounded-md">
+                    <li><a>About</a></li>
+                  </ul>
+                </div>
               </ul>
             </div>
             <div class="navbar-end">
@@ -47,9 +72,9 @@
                   </h1>
                   <p class="text-[20px] w-[60%]">Share your favorite opinion and win and wp forum coffee mug!</p>
                   <div class="bg-white lg:w-[50%] flex justify-between py-3 px-3 rounded-lg lg:rounded-[50px]">
-                    <input class="text-black w-full" type="text" placeholder="Search here anything">
+                    <input id="search-input" class="text-black w-full" type="text" placeholder="Search here anything">
                     
-                      <button class="bg-[#797DFC] font-semibold py-2 px-4 rounded-lg lg:rounded-[50px]">Search</button>
+                      <button onclick="searchBtn()" class="bg-[#797DFC] font-semibold py-2 px-4 rounded-lg lg:rounded-[50px]">Search</button>
                     
                   </div>
                 </div>
@@ -85,68 +110,66 @@
           <!-- post-section -->
           <div class="flex flex-col lg:flex-row gap-6 justify-between mt-20">
              <!-- post-container -->
-            <div id="post-container">
-                <!-- <div>
-                    <div class="flex bg-[#F3F3F5] p-2 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
-                              <div>
-                                <div class="flex items-start">
-                               <div class="bg-slate-400 p-4 rounded-[10px]">
-                                <img src="Frame profail.png" alt=""> 
-                            </div>
-
-                               <div class="">
-                                <img class=" -translate-x-2 -translate-y-1" src="Status-red.png" alt="">
-                               </div>
-
-                               <div class="hidden">
-                                <img class=" -translate-x-2 -translate-y-1" src="Status.png" alt="">
-                               </div>
-
-                            </div>
-                            </div>
+             <div id="post-container">
                 
-                               <div class="space-y-2">
-                                 <div class="flex gap-6">
-                                    <p class="text-[#12132D99] font-semibold"># Coding</p>
-                                    <p class="text-[#12132D99] font-semibold">Author : David Brown</p>
-                                 </div>
-                                 <h4 class="text-[20px] font-semibold">JavaScript Programming: Advanced Techniques</h4>
-                                <p class="text-[#12132D99] pb-5 lg:w-[75%]">Take your JavaScript skills to the next level with advanced techniques and tips!</p>
-                               
-                                <div class="flex justify-between items-center border-dashed border-t-2 border-gray-300 pt-5">
-                                    <div class="flex gap-2 lg:gap-8">
-                                        <p class="flex gap-3 items-center text-[#12132D99]"> <img src="com.png" alt="">620</p>
-                                    <p class="flex gap-3 items-center text-[#12132D99]"> <img src="tabler-icon-eye.png" alt=""> 2015</p>
-                                    <p class="flex gap-3 items-center text-[#12132D99]"> <img src="tabler-icon-clock-hour-9.png" alt=""> 7min</p>
-                                    </div>
-                
-                                     <div>
-                                        <button>
-                                            <img src="btn-img.png" alt="">
-                                        </button>
-                                     </div>
-                                </div>
-                
-                               </div>
-                            </div>
-                    </div> -->
             </div>
             <!-- ---------- -->
                     <div id="titles" class=" text-black p-5  lg:w-[30%] rounded-2xl flex flex-col  space-y-4 bg-[#F3F3F5]">
                         <div class="flex justify-between">
                             <p class="text-[20px]">Title</p>
-                            <p class="text-[#12132D99] font-semibold">Mark as read (4)</p>
+                            <p class="text-[#12132D99] font-semibold">Mark as read (<span id="count">0</span>)</p>
                         </div>
-                       <!-- <div  class="flex bg-white p-3 rounded-2xl hidden">
-                        <p class="font-semibold">10 Kids Unaware of Their Halloween Costume</p>
-                        <p class="flex gap-2 items-center text-[#12132D99]"> <img src="tabler-icon-eye.png" alt=""> 1586</p>
-                       </div>  -->
-                </div>
-            
-
+                      </div>
+                    </div>
+    
+        <!-- second-bennar -->
+        <div class="my-16">
+          <div class="hero py-20 text-white bg-base-200 bg-[url('header-Img.png')] bg-no-repeat bg-cover rounded-[50px]">
+            <div class="hero-content flex-col lg:flex-row-reverse">
+              <img src="bennar-2.png" />
+              <div>
+                <h1 class="text-5xl font-bold">Join Our Forum</h1>
+                <p class="py-6 md:w-[70%]">Share your favorite opinion and win and wp forum coffee mug! Yes, you can run unit tests and view the results directly within the app. </p>
+                <button class="bg-[#797DFC] font-semibold py-3 px-5 rounded-lg lg:rounded-[50px]">Registered Now</button>
+              </div>
+            </div>
           </div>
+        </div>
+     
+        <!-- latest-post -->
+        <section>
+          <!--latest-post-title -->
+        <div class="w-[90%] md:w-[40%] mx-auto text-center space-y-4">
+          <h3 class="text-4xl font-bold">Latest Posts</h3>
+          <p class="text-[#12132D99] text-[18px]">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
+        </div>
+
+        <!-- latest-card -->
+        <div id="latest-card" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-20">
+          <!-- <div class="card card-compact w-96 bg-base-100 shadow-xl">
+            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+            <div class="card-body space-y-3">
+              <h1 class="text-[16px] text-[#12132D99]"><i class="fa-solid fa-calendar-days mr-2"></i> 29 January 2024</h1>
+              <h2 class="font-bold leading-6 text-[20px]">What will a mars habitat force that impact in our daily life!!!</h2>
+              <p class="text-[16px] text-[#12132D99]">Yes, you can run unit tests and view the results directly within the app. </p>
+              <div class=" flex gap-3">
+                <div>
+                  <img src="latest-post-profail.png" alt="">
+                </div>
+                <div>
+                  <p class="text-[16px] font-bold">Cameron Williamson</p>
+                  <p class="text-[##12132D99]">Unknown</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        </section>
 
     </main>
+    <footer>
+      
+    </footer>
     <script src="retro.js"></script>
 </body>
 </html>
