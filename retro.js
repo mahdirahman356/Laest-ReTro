@@ -14,6 +14,7 @@ let allPosts = (allData) => {
         loadingTime()
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
+
         createPosts.innerHTML = `
         <div>
         <div class="flex flex-col md:flex-row bg-[#F3F3F5] p-5 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
@@ -21,7 +22,7 @@ let allPosts = (allData) => {
                    <div class="flex items-start">
                   
                    <div class="indicator">
-                   <span id="status" class="indicator-item badge badge-secondary  bg-red-500 border-white"></span>
+                   <span id="status" class="indicator-item badge badge-secondary bg-red-500 border-white status"></span>
                    <div class="grid bg-base-300 place-items-center">
                    <img class="w-20" src=${postSetup.image} alt="">
                    </div>
@@ -40,7 +41,7 @@ let allPosts = (allData) => {
                         <p class="text-[#12132D99] font-semibold"># ${postSetup.category}</p>
                         <p class="text-[#12132D99] font-semibold">Author : ${postSetup.author.name}</p>
                      </div>
-                     <h4 class="text-[20px] font-semibold">${postSetup.title}</h4>
+                     <h4 class="text-[20px] font-semibold">${postSetup.title.split("'").join('')}</h4>
                     <p class="text-[#12132D99] pb-5 lg:w-[75%]">${postSetup.
                         description
                         }</p>
@@ -65,11 +66,15 @@ let allPosts = (allData) => {
                 </div>
         </div>
         `
-        postContainer.appendChild(createPosts)
+       postContainer.appendChild(createPosts)  
+       console.log(postSetup.isActive)
+       let status = createPosts.querySelector('.status');
+       let isActive = postSetup.isActive;
+    if (isActive === true) {
+    status.classList.remove('bg-red-500');
+    status.classList.add('bg-green-500');
+    }
 
-       let status = document.getElementById('status')
-       
-     
     });
 }
 
