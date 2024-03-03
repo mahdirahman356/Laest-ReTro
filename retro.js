@@ -10,23 +10,23 @@ let posts = async(categoryName) => {
 
 let allPosts = (allData) => {
     allData.forEach(postSetup => {
+        console.log(postSetup)
         loadingTime()
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
         createPosts.innerHTML = `
         <div>
         <div class="flex flex-col md:flex-row bg-[#F3F3F5] p-5 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
-                  <div>
-                    <div class="flex items-start">
-                   <div class="bg-slate-400 p-4 rounded-[10px] hidden">
-                    <img src="Frame profail.png" alt="">
-                   </div>
-                   
+                   <div>
+                   <div class="flex items-start">
+                  
                    <div class="indicator">
                    <span id="status" class="indicator-item badge badge-secondary  bg-red-500 border-white"></span>
-                   <div class="grid p-8 bg-base-300 place-items-center"></div>
+                   <div class="grid bg-base-300 place-items-center">
+                   <img class="w-20" src=${postSetup.image} alt="">
+                   </div>
                  </div>
-
+           
                    
 
                    <div id="active" class="hidden">
@@ -66,22 +66,20 @@ let allPosts = (allData) => {
         </div>
         `
         postContainer.appendChild(createPosts)
-       let unactive = document.getElementById('unactive')
-       let status = document.getElementById('status')
 
-       if(postSetup.isActive){
-            status.classList.remove('bg-red-500')
-            status.classList.add('bg-green-500')
-       }
-    
+       let status = document.getElementById('status')
+       
      
     });
 }
+
+
+
 let loadingTime = () => {
     setTimeout(() => {
         let loading = document.getElementById('loading')
         loading.classList.add('hidden')
-    },2000)
+    },)
 }
 
 let postBtn = (title,view) => {
@@ -125,7 +123,6 @@ let latestPosts = async() => {
 }  
 let  allLatestCart = (data) => {
     data.forEach(latestPostsSetup => {
-        console.log(latestPostsSetup)
         let latestCard = document.getElementById('latest-card')
         let createlatestCard = document.createElement('div')
         createlatestCard.innerHTML = `
