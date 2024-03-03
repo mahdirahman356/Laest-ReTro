@@ -24,7 +24,7 @@
                     <li><a><img src="Frame 4.png" alt=""></a></li>
                 </ul>
               </div>
-              <a class="btn btn-ghost text-xl">daisyUI</a>
+              <a class="btn btn-ghost text-2xl font-bold">ReTro</a>
             </div>
             <div class="navbar-center hidden lg:flex">
               <ul class="menu menu-horizontal px-1">
@@ -59,13 +59,15 @@
               </ul>
             </div>
             <div class="navbar-end">
-              <a class="btn">Button</a>
+              <a class="btn">Sign In</a>
             </div>
           </div>
           <!-- header-section -->
           <section>
             <!-- header-container -->
-            <div class="flex flex-col lg:flex-row justify-between bg-[url('header-Img.png')] bg-no-repeat bg-cover p-5 md:p-20  text-white rounded-[40px] my-7 gap-y-7">
+            <div class="bg-[url('header-Img.png')] bg-no-repeat bg-cover rounded-[40px]">
+            <div class="flex flex-col lg:flex-row justify-between bg-[url('header-inner-img.png')] bg-no-repeat bg-cover p-5 md:p-20  text-white rounded-[40px] my-7 gap-y-7">
+              
                 <div class="space-y-6">
                   <h1 class="text-5xl md:text-7xl font-bold lg:w-[60%]">
                     Welcome to the ReTro Forum
@@ -98,6 +100,7 @@
                     </div>
                 </div>
             </div>
+          </div>
           </section>
     </header>
     <main class="md:w-[85%] mx-auto my-24">
@@ -107,11 +110,14 @@
             <p class="text-[#12132D99] text-[18px]">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
           </div>
 
-          <!-- post-section -->
+          <!-- post-section --> 
+          <!-- loading -->
+          <div id="loading" class="my-52 text-center hidden">
+            <span  class="loading loading-spinner text-neutral"></span>
+          </div>
           <div class="flex flex-col lg:flex-row gap-6 justify-between mt-20">
              <!-- post-container -->
              <div id="post-container">
-                
             </div>
             <!-- ---------- -->
                     <div id="titles" class=" text-black p-5  lg:w-[30%] rounded-2xl flex flex-col  space-y-4 bg-[#F3F3F5]">
@@ -158,7 +164,7 @@
                 </div>
                 <div>
                   <p class="text-[16px] font-bold">Cameron Williamson</p>
-                  <p class="text-[##12132D99]">Unknown</p>
+                  <p class="text-[#12132D99]">Unknown</p>
                 </div>
               </div>
             </div>
@@ -167,9 +173,24 @@
         </section>
 
     </main>
-    <footer>
-      
-    </footer>
+
+      <footer>
+      <div class="w-[90%] md:w-[40%] mx-auto text-center space-y-6 py-16">
+        <h3 class="text-4xl font-bold">ReTro</h3>
+        <p class="text-[#12132D99] text-[18px]">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+        <div class="md:w-[40%] mx-auto flex gap-8 justify-center items-center text-[30px]">
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+     
+      <div class="py-24 border-t-2 border-[#30325E1A] text-center w-[70%] mx-auto">
+        <h1 class="text-[#12132D80]">2017, All Rights Reserved.</h1>
+      </div>
+     
+      </footer>
     <script src="retro.js"></script>
 </body>
 </html>

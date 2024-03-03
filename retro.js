@@ -1,5 +1,7 @@
 
 let posts = async(categoryName) => {
+    let loading = document.getElementById('loading')
+    loading.classList.remove('hidden')
     let res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     let data = await res.json()
     let allData = data.posts
@@ -8,6 +10,7 @@ let posts = async(categoryName) => {
 
 let allPosts = (allData) => {
     allData.forEach(postSetup => {
+        loadingTime()
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
         createPosts.innerHTML = `
@@ -74,6 +77,12 @@ let allPosts = (allData) => {
      
     });
 }
+let loadingTime = () => {
+    setTimeout(() => {
+        let loading = document.getElementById('loading')
+        loading.classList.add('hidden')
+    },2000)
+}
 
 let postBtn = (title,view) => {
     let titlesContainer = document.getElementById('titles')
@@ -87,6 +96,8 @@ let postBtn = (title,view) => {
     titlesContainer.appendChild(showTitles)
     count()
 }
+
+
 
 let counting = 1
 let count = () => {
@@ -106,7 +117,6 @@ let searchBtn = () => {
     postContainer.innerHTML = ''
 
 }
-posts('comedy')
 
 let latestPosts = async() => {
     let res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts')
@@ -119,7 +129,7 @@ let  allLatestCart = (data) => {
         let latestCard = document.getElementById('latest-card')
         let createlatestCard = document.createElement('div')
         createlatestCard.innerHTML = `
-        <div class="card card-compact w-96 bg-base-100 shadow-xl">
+        <div class="card card-compact bg-base-100 shadow-xl">
             <figure><img src=${latestPostsSetup.cover_image} alt="Shoes" /></figure>
             <div class="card-body space-y-3">
             <h1 class="text-[16px] text-[#12132D99]"><i class="fa-solid fa-calendar-days mr-2"></i> ${latestPostsSetup.author?.posted_date?`${latestPostsSetup.author?.posted_date}`:"No publish date"}</h1>
@@ -142,3 +152,4 @@ let  allLatestCart = (data) => {
     });
   }
 latestPosts()
+posts('comedy')
