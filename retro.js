@@ -10,11 +10,23 @@ let posts = async(categoryName) => {
 
 let allPosts = (allData) => {
     allData.forEach(postSetup => {
-        console.log(postSetup)
+        console.log(postSetup.view_count)
+        function removeSingleQuotes(text) {
+          let newText = '';
+          for (let i = 0; i < text.length; i++) {
+              if (text[i] !== "'") {
+                  newText += text[i];
+              }
+          }
+          return newText;
+      }
         loadingTime()
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
+        let postTitle = removeSingleQuotes(postSetup.title)
+        let postViewCount = removeSingleQuotes(postSetup.view_count)
 
+        
         createPosts.innerHTML = `
         <div>
         <div class="flex flex-col md:flex-row bg-[#F3F3F5] p-5 lg:p-9 rounded-2xl gap-2 lg:gap-12 mb-5">
@@ -41,10 +53,9 @@ let allPosts = (allData) => {
                         <p class="text-[#12132D99] font-semibold"># ${postSetup.category}</p>
                         <p class="text-[#12132D99] font-semibold">Author : ${postSetup.author.name}</p>
                      </div>
-                     <h4 class="text-[20px] font-semibold">${postSetup.title.split("'").join('')}</h4>
+                     <h4 class="text-[20px] font-semibold">${removeSingleQuotes(postTitle)}</h4>
                     <p class="text-[#12132D99] pb-5 lg:w-[75%]">${postSetup.
-                        description
-                        }</p>
+                        description}</p>
                    
                     <div class="flex justify-between items-center border-dashed border-t-2 border-gray-300 pt-5">
                         <div class="flex gap-2 lg:gap-8">
@@ -56,7 +67,7 @@ let allPosts = (allData) => {
                         </div>
     
                          <div>
-                            <button onclick="postBtn('${postSetup.title}','${postSetup.view_count}')">
+                            <button onclick="postBtn('${ removeSingleQuotes(postTitle)}','${removeSingleQuotes(postViewCount)}')">
                                 <img src="btn-img.png" alt="">
                             </button>
                          </div>
@@ -88,18 +99,18 @@ let loadingTime = () => {
 }
 
 let postBtn = (title,view) => {
-    let titlesContainer = document.getElementById('titles')
-    let showTitles = document.createElement('div')
-    showTitles.innerHTML = `
-    <div  class="flex bg-white p-3 rounded-2xl gap-6">
-    <p class="font-semibold">${title}</p>
-    <p class="flex gap-2 items-center text-[#12132D99]"> <img src="tabler-icon-eye.png" alt=""> ${view}</p>
-   </div> 
-    `
-    titlesContainer.appendChild(showTitles)
-    count()
+  
+  let titlesContainer = document.getElementById('titles')
+  let showTitles = document.createElement('div')
+  showTitles.innerHTML = `
+  <div  class="flex bg-white  p-3 rounded-2xl gap-4">
+  <p class="font-semibold w-[70%]">${title}</p>
+  <p class="flex gap-2 items-center text-[#12132D99]"> <img src="tabler-icon-eye.png" alt=""> ${view}</p>
+ </div> 
+  `
+  titlesContainer.appendChild(showTitles)
+  count()
 }
-
 
 
 let counting = 1
