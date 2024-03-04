@@ -10,7 +10,6 @@ let posts = async(categoryName) => {
 
 let allPosts = (allData) => {
     allData.forEach(postSetup => {
-        console.log(postSetup.view_count)
         function removeSingleQuotes(text) {
           let newText = '';
           for (let i = 0; i < text.length; i++) {
@@ -24,8 +23,6 @@ let allPosts = (allData) => {
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
         let postTitle = removeSingleQuotes(postSetup.title)
-        let postViewCount = removeSingleQuotes(postSetup.view_count)
-
         
         createPosts.innerHTML = `
         <div>
@@ -67,7 +64,7 @@ let allPosts = (allData) => {
                         </div>
     
                          <div>
-                            <button onclick="postBtn('${ removeSingleQuotes(postTitle)}','${removeSingleQuotes(postViewCount)}')">
+                            <button onclick="postBtn('${ removeSingleQuotes(postTitle)}','${postSetup.view_count}')">
                                 <img src="btn-img.png" alt="">
                             </button>
                          </div>
@@ -78,7 +75,6 @@ let allPosts = (allData) => {
         </div>
         `
        postContainer.appendChild(createPosts)  
-       console.log(postSetup.isActive)
        let status = createPosts.querySelector('.status');
        let isActive = postSetup.isActive;
     if (isActive === true) {
@@ -95,7 +91,7 @@ let loadingTime = () => {
     setTimeout(() => {
         let loading = document.getElementById('loading')
         loading.classList.add('hidden')
-    },)
+    },2000)
 }
 
 let postBtn = (title,view) => {
