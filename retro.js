@@ -1,11 +1,21 @@
 
 let posts = async(categoryName) => {
-    let loading = document.getElementById('loading')
-    loading.classList.remove('hidden')
+    let postContainer = document.getElementById('post-container');
+    postContainer.classList.add('hidden');
+    let titlesContainer = document.getElementById('titles')
+    titlesContainer.classList.add('hidden')
+    let loading = document.getElementById('loading');
+    loading.classList.remove('hidden');
+
     let res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     let data = await res.json()
     let allData = data.posts
     allPosts(allData)
+
+    setTimeout(() => {
+      postContainer.classList.remove('hidden'); 
+      titlesContainer.classList.remove('hidden')
+  }, 2000);
 }
 
 let allPosts = (allData) => {
@@ -19,7 +29,7 @@ let allPosts = (allData) => {
           }
           return newText;
       }
-        loadingTime()
+      loadingTime()
         let postContainer = document.getElementById('post-container')
         let createPosts = document.createElement('div')
         let postTitle = removeSingleQuotes(postSetup.title)
@@ -86,11 +96,11 @@ let allPosts = (allData) => {
 }
 
 
-
 let loadingTime = () => {
     setTimeout(() => {
         let loading = document.getElementById('loading')
         loading.classList.add('hidden')
+        
     },2000)
 }
 
@@ -125,7 +135,8 @@ let searchBtn = () => {
     posts(categoryName)
     let postContainer = document.getElementById('post-container')
     postContainer.innerHTML = ''
-
+    let loading = document.getElementById('loading')
+    loading.classList.remove('hidden')
 }
 
 let latestPosts = async() => {
